@@ -81,7 +81,7 @@ def candle_stick(coin_name,period):
     open_time = df["Open Time"]
 
     def calculate_time(number):
-        return dt.fromtimestamp(open_time.iloc[number+3] / 1000)
+        return dt.fromtimestamp(open_time.iloc[number+7] / 1000)
 
 
 
