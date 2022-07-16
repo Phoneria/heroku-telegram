@@ -10,9 +10,9 @@ import requests
 
 
 def message(bot_mesaj):
-    id_list = ["1598072365","1518181191","734839772"]
+    id_list = ["1598072365","1518181191"]
     #1518181191 ataberk
-    #734839772 furkan
+ 
     for i in id_list:
         bot_token= "5424258200:AAGNGZlN5HevI2fnyQedvD7v8XPsFFSBBJA"
         url ="https://api.telegram.org/bot"+bot_token+"/sendMessage?chat_id="+i+"&parse_mode=Markdown&text="+bot_mesaj
@@ -81,7 +81,7 @@ def candle_stick(coin_name,period):
     open_time = df["Open Time"]
 
     def calculate_time(number):
-        return dt.fromtimestamp(open_time.iloc[number] / 1000)
+        return dt.fromtimestamp(open_time.iloc[number+3] / 1000)
 
 
 
@@ -219,13 +219,13 @@ while True  :
             message("NEW MESSAGE!!!!\n30MIN")
             candle_stick("NEARUSDT","30MIN")
             candle_stick("BTCUSDT","30MIN")
-            candle_stick("ETHUSDT","30MIN")
+         
 
         if  time.localtime().tm_min == 59 and time.localtime().tm_sec == 10:
             message("NEW MESSAGE!!!!\n1HOUR")
             candle_stick("NEARUSDT", "1HOUR")
             candle_stick("BTCUSDT", "1HOUR")
-            candle_stick("ETHUSDT","1HOUR")
+           
 
 
     except:
