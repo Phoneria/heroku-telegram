@@ -92,26 +92,23 @@ def candle_stick(coin_name,period):
             # ENGULF CANDLE
             if  (open_level[i] > close_level[i]) and (close_level[i - 1] > open_level[i - 1]) and (
                     abs(close_level[i] - open_level[i]) > abs(close_level[i-1] - open_level[i-1])):
-                message(coin_name + "\nSHORT ENGULF CANDLE")
-                message("STRENGTH : 2")
-                message(coin_name + " : " + str(calculate_time(i)) + " : " + period)
+                message(coin_name + "\nSHORT ENGULF CANDLE"+ " : " + str(calculate_time(i)) + " : " + period)
+               
+              
 
 
             if (open_level[i] < close_level[i]) and (close_level[i - 1] <open_level[i - 1]) and (
                     abs(close_level[i] - open_level[i]) > abs(close_level[i - 1] - open_level[i - 1])):
-                message(coin_name + "\nLONG ENGULF CANDLE")
-                message("STRENGTH : 2")
-                message(coin_name + " : " + str(calculate_time(i)) + " : " + period)
+                message(coin_name + "\nLONG ENGULF CANDLE"+ " : " + str(calculate_time(i)) + " : " + period)
+                
             # GREEN CANDLE WITHOUT BOT SHADOW
             if low_level[i] == open_level[i]:
-                message(coin_name + "\nGREEN CANDLE WITHOUT BOT SHADOW ")
-                message("STRENGTH : 4")
-                message(coin_name + " : " + str(calculate_time(i)) + " : " + period)
+                message(coin_name + "\nGREEN CANDLE WITHOUT BOT SHADOW"+ " : " + str(calculate_time(i)) + " : " + period)
+             
             # RED CANDLE WITHOUT TOP SHADOW
             if high_level[i] == open_level[i]:
-                message(coin_name + "\nRED CANDLE WITHOUT TOP SHADOW")
-                message("STRENGTH : 4")
-                message(coin_name + " : " + str(calculate_time(i)) + " : " + period)
+                message(coin_name + "\nRED CANDLE WITHOUT TOP SHADOW"+ " : " + str(calculate_time(i)) + " : " + period)
+                
             # EVENING STAR
             if (close_level[i] < open_level[i]) and ( abs(close_level[i]-open_level[i])> abs(close_level[i-1]-open_level[i-1])) and (
                     abs(close_level[i-1] - open_level[i-1]) / (high_level[i]-low_level[i]) < 0.3) and (close_level[i-2]>open_level[i-2]) and(
@@ -119,9 +116,8 @@ def candle_stick(coin_name,period):
                     abs(close_level[i-1] - open_level[i-1]) / (high_level[i-1]-low_level[i-1]) < 0.3) and (
                     abs(close_level[i] - open_level[i]) / (high_level[i]-low_level[i]) > 0.3) and (
                     abs(close_level[i-2] - open_level[i-2]) / (high_level[i-2]-low_level[i-2]) > 0.3)  :
-                message(coin_name + "\nEVENING STAR")
-                message("STRENGTH : 3")
-                message(coin_name + " : " + str(calculate_time(i)) + " : " + period)
+                message(coin_name + "\nEVENING STAR"+ " : " + str(calculate_time(i)) + " : " + period)
+             
             # MORNING STAR
 
             if (close_level[i] > open_level[i]) and ( abs(close_level[i]-open_level[i])> abs(close_level[i-1]-open_level[i-1])) and (close_level[i-2]<open_level[i-2]) and(
@@ -129,88 +125,82 @@ def candle_stick(coin_name,period):
                     abs(close_level[i-1] - open_level[i-1]) / (high_level[i-1]-low_level[i-1]) < 0.3) and (
                     abs(close_level[i] - open_level[i]) / (high_level[i]-low_level[i]) > 0.3) and (
                     abs(close_level[i-2] - open_level[i-2]) / (high_level[i-2]-low_level[i-2]) > 0.3) :
-                message(coin_name + "\nMORNING STAR")
-                message("STRENGTH : 3")
-                message(coin_name + " : " + str(calculate_time(i)) + " : " + period)
+                message(coin_name + "\nMORNING STAR"+ " : " + str(calculate_time(i)) + " : " + period)
+      
             if (close_level[i] < open_level[i]) and (close_level[i - 1] > open_level[i - 1]) \
                     and (close_level[i - 2] > open_level[i - 2]) and (close_level[i - 3] < open_level[i - 3]) and \
                     (close_level[i - 2] - open_level[i - 2] > open_level[i - 3] - close_level[i - 3]) and \
                     (open_level[i] - close_level[i] > close_level[i - 1] - open_level[i - 1]):
-                message(coin_name+ "\nDOUBLE ENGULF SHORT")
-                message("STRENGTH : 2")
-                message(coin_name + " : " + str(calculate_time(i)) + " : " + period)
+                message(coin_name+ "\nDOUBLE ENGULF SHORT"+ " : " + str(calculate_time(i)) + " : " + period)
+         
+        
             if (close_level[i] > open_level[i]) and (close_level[i - 1] < open_level[i - 1]) \
                     and (close_level[i - 2] < open_level[i - 2]) and (close_level[i - 3] > open_level[i - 3]) and \
                     (close_level[i - 2] - open_level[i - 2] < open_level[i - 3] - close_level[i - 3]) and \
                     (open_level[i] - close_level[i] < close_level[i - 1] - open_level[i - 1]):
-                message(coin_name+ "\nDOUBLE ENGULF LONG")
-                message("STRENGTH : 2")
-                message(coin_name + " : " + str(calculate_time(i)) + " : " + period)
+                message(coin_name+ "\nDOUBLE ENGULF LONG"+ " : " + str(calculate_time(i)) + " : " + period)
+      
+    
             if (close_level[i] > open_level[i]) and (close_level[i - 2] > open_level[i - 2]) and (
                     close_level[i - 1] < open_level[i - 1]) and (
                     close_level[i] - open_level[i] > open_level[i - 1] - close_level[i - 1]) and (
                     close_level[i - 2] - open_level[i - 2] > open_level[i - 1] - close_level[i - 1]):
 
-                message(coin_name + "\nTRIPLE CANDLE LONG")
-                message("STRENGTH : 3")
-                message(coin_name + " : " + str(calculate_time(i)) + " : " + period)
+                message(coin_name + "\nTRIPLE CANDLE LONG"+ " : " + str(calculate_time(i)) + " : " + period)
+    
+    
             if (close_level[i] < open_level[i]) and (close_level[i - 2] < open_level[i - 2]) and (
                     close_level[i - 1] > open_level[i - 1]) and (
                     open_level[i] - close_level[i] > close_level[i - 1] - open_level[i - 1]) and (
                     open_level[i - 2] - close_level[i - 2] > close_level[i - 1] - open_level[i - 1]):
 
-                message(coin_name + "\nTRIPLE CANDLE SHORT")
-                message("STRENGTH : 3")
-                message(coin_name + " : " + str(calculate_time(i)) + " : " + period)
-
+                message(coin_name + "\nTRIPLE CANDLE SHORT"+ " : " + str(calculate_time(i)) + " : " + period)
+         
+        
 
             if (close_level[i] > open_level[i]) and (close_level[i - 4] > open_level[i - 4]) and (
                     close_level[i - 1] < open_level[i - 1]) and (close_level[i - 2] < open_level[i - 2]) and (
                     close_level[i - 3] < open_level[i - 3]) \
                     and (open_level[i - 4] < open_level[i]):
-                message(coin_name + "\nTHREE CANDLE LONG ")
-                message(coin_name + " : " + str(calculate_time(i)) + " : " + period)
-                message("STRENGTH : 3")
+                message(coin_name + "\nTHREE CANDLE LONG"+ " : " + str(calculate_time(i)) + " : " + period)
+        
 
             if (close_level[i] < open_level[i]) and (close_level[i - 4] < open_level[i - 4]) and (
                     close_level[i - 1] > open_level[i - 1]) and (close_level[i - 2] > open_level[i - 2]) and (
                     close_level[i - 3] > open_level[i - 3]) \
                     and (open_level[i - 4] > open_level[i]):
-                message(coin_name + "\nTHREE CANDLE SHORT ")
-                message(coin_name + " : " + str(calculate_time(i)) + " : " + period)
-                message("STRENGTH : 3")
+                message(coin_name + "\nTHREE CANDLE SHORT"+ " : " + str(calculate_time(i)) + " : " + period)
+
 
 
             if (close_level[i]<open_level[i]) and (close_level[i-1]<open_level[i-1]) and (close_level[i-2]<open_level[i-2]) and \
                 close_level[i] < low_level[i-1] and close_level[i-1] < low_level[i-2]:
 
-                message(coin_name + "\nTHREE BLACK CROWN")
-                message(coin_name + " : " + str(calculate_time(i)) + " : " + period)
-                message("STRENGTH : 2")
+                message(coin_name + "\nTHREE BLACK CROWN"+ " : " + str(calculate_time(i)) + " : " + period)
+
 
             if close_level[i] > open_level[i] and close_level[i - 1] > open_level[i - 1] and close_level[i - 2] > open_level[i - 2] and \
                     close_level[i] > high_level[i - 1] and close_level[i - 1] > high_level[i - 2]:
-                message(coin_name + "\nTHREE WHITE SOLDIER ")
-                message(coin_name + " : " + str(calculate_time(i)) + " : " + period)
-                message("STRENGTH : 2")
+                message(coin_name + "\nTHREE WHITE SOLDIER"+ " : " + str(calculate_time(i)) + " : " + period)
+
 
             if close_level[i] < open_level[i] and \
                     close_level[i - 1] < open_level[i - 1] and \
                     close_level[i - 2] < open_level[i - 2] and \
                     close_level[i - 3] < open_level[i - 3] and \
                     close_level[i - 4] < open_level[i - 4]:
-                message(coin_name + "\nFIVE CANDLE SHORT ")
-                message(coin_name + " : " + str(calculate_time(i)) + " : " + period)
-                message("STRENGTH : 2")
+                message(coin_name + "\nFIVE CANDLE SHORT"+ " : " + str(calculate_time(i)) + " : " + period)
+                
+
             if close_level[i] > open_level[i] and \
                     close_level[i - 1] > open_level[i - 1] and \
                     close_level[i - 2] > open_level[i - 2] and \
                     close_level[i - 3] > open_level[i - 3] and \
                     close_level[i - 4] > open_level[i - 4]:
 
-                message(coin_name + "\nFIVE CANDLE LONG ")
-                message(coin_name + " : " + str(calculate_time(i)) + " : " + period)
-                message("STRENGTH : 2")
+                message(coin_name + "\nFIVE CANDLE LONG"+ " : " + str(calculate_time(i)) + " : " + period)
+
+                
 
 message("HELLO WORLD!!!")
 while True  :
