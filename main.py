@@ -52,22 +52,7 @@ def tg_writer(coin_name,period):
         finish_time = datetime.today() + timedelta(days=1)
         interval =  Client.KLINE_INTERVAL_1HOUR
 
-    elif period == "2HOUR":
 
-        start_time = datetime.today() - timedelta(hours=16)
-        finish_time = datetime.today() + timedelta(days=1)
-        interval = Client.KLINE_INTERVAL_2HOUR
-
-    elif period =="4HOUR":
-        start_time = datetime.today() - timedelta(hours=28)
-        finish_time = datetime.today() + timedelta(days=1)
-        interval = Client.KLINE_INTERVAL_4HOUR
-
-    elif period=="1DAY":
-
-        start_time = datetime.today() - timedelta(days=6)
-        finish_time = datetime.today() + timedelta(days=1)
-        interval = Client.KLINE_INTERVAL_1DAY
 
 
 
@@ -101,9 +86,8 @@ def candle_stick(coin_name,period):
 
 
     for i in range(5,len(close_level)):
-        if True:
-
-
+        
+        if  time.localtime().tm_hour == calculate_time(i).hour:
 
             # ENGULF CANDLE
             if  (open_level[i] > close_level[i]) and (close_level[i - 1] > open_level[i - 1]) and (
@@ -179,9 +163,6 @@ def candle_stick(coin_name,period):
                 message("STRENGTH : 3")
                 message(coin_name + " : " + str(calculate_time(i)) + " : " + period)
 
-            if abs(close_level[i]-open_level[i])/(high_level[i]-low_level[i]) < 0.382:
-                message(coin_name + "\nDOJI CANDLE")
-                message(coin_name+" : "+str(calculate_time(i))+" : "+period)
 
             if (close_level[i] > open_level[i]) and (close_level[i - 4] > open_level[i - 4]) and (
                     close_level[i - 1] < open_level[i - 1]) and (close_level[i - 2] < open_level[i - 2]) and (
@@ -238,26 +219,14 @@ while True  :
             message("NEW MESSAGE!!!!\n30MIN")
             candle_stick("NEARUSDT","30MIN")
             candle_stick("BTCUSDT","30MIN")
+            candle_stick("ETHUSDT","30MIN")
 
         if  time.localtime().tm_min == 59 and time.localtime().tm_sec == 10:
             message("NEW MESSAGE!!!!\n1HOUR")
             candle_stick("NEARUSDT", "1HOUR")
             candle_stick("BTCUSDT", "1HOUR")
-
-        if  time.localtime().tm_hour%2 == 1 and time.localtime().tm_min == 59 and time.localtime().tm_sec == 20:
-            message("NEW MESSAGE!!!!\n2HOUR")
-            candle_stick("NEARUSDT", "2HOUR")
-            candle_stick("BTCUSDT", "2HOUR")
+            candle_stick("ETHUSDT","1HOUR")
 
 
-        if  time.localtime().tm_hour%4 == 2 and time.localtime().tm_min == 59 and time.localtime().tm_sec == 30:
-            message("NEW MESSAGE!!!!\n4HOUR")
-            candle_stick("NEARUSDT", "4HOUR")
-            candle_stick("BTCUSDT", "4HOUR")
-
-        if  time.localtime().tm_hour%24 == 2 and time.localtime().tm_min == 59 and time.localtime().tm_sec == 40:
-            message("NEW MESSAGE!!!!\n1DAY")
-            candle_stick("NEARUSDT", "1DAY")
-            candle_stick("BTCUSDT", "1DAY")
     except:
         message("THERE IS AN ERROR")
