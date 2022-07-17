@@ -40,9 +40,9 @@ def tg_writer(coin_name,):
 
         csv_file.close()
 
- 
 
-    start_time = datetime.today() - timedelta(hours=30)
+
+    start_time = datetime.today() - timedelta(hours=12)
     finish_time = datetime.today() + timedelta(days=1)
     interval = Client.KLINE_INTERVAL_30MINUTE
 
@@ -58,7 +58,7 @@ def candle_stick(coin_name):
 
     tg_writer(coin_name)
 
-    df = pd.read_csv(coin_name  + "TG.csv", names=titles)
+    df = pd.read_csv(coin_name  + "30MINTG.csv", names=titles)
 
 
 
@@ -80,8 +80,8 @@ def candle_stick(coin_name):
 
 
     for i in range(5,len(close_level)):
-        if calculate_time(i).hour == time.localtime().tm_hour:
-
+        if calculate_time(i).hour == time.localtime().tm_hour   :
+            message(str(calculate_time(i)))
 
 
             # ENGULF CANDLE
@@ -202,12 +202,10 @@ def candle_stick(coin_name):
 
 message("YENİDEN BAŞLADI")
 
-
 while True :
     try:
-        if (time.localtime().tm_min == 29 or time.localtime().tm_min == 59) and time.localtime().tm_sec == 0:
+        if (time.localtime().tm_min == 29 or time.localtime().tm_min == 59) and time.localtime().tm_sec == 50:
             candle_stick("NEARUSDT")
 
     except:
         message("BİR HATA OLUŞTU")
-        
