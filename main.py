@@ -81,7 +81,8 @@ def candle_stick(coin_name):
 
     for i in range(5,len(close_level)):
         if calculate_time(i).hour == time.localtime().tm_hour   :
-            message(str(calculate_time(i)))
+            
+           
 
 
             # ENGULF CANDLE
@@ -93,7 +94,8 @@ def candle_stick(coin_name):
 
             if (open_level[i] < close_level[i]) and (close_level[i - 1] <open_level[i - 1]) and (
                     abs(close_level[i] - open_level[i]) > abs(close_level[i - 1] - open_level[i - 1])):
-                message(coin_name + "\nLONG ENGULF MUMU"+ " : " + str(calculate_time(i)) + " : " )
+                message(coin_name + "\nLONG ENGULF MUMU"+ " : " + str(
+                    _time(i)) + " : " )
 
             # GREEN CANDLE WITHOUT BOT SHADOW
             if low_level[i] == open_level[i]:
