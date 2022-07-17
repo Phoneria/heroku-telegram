@@ -206,6 +206,7 @@ while True :
     try:
         if (time.localtime().tm_min == 29 or time.localtime().tm_min == 59) and time.localtime().tm_sec == 50:
             candle_stick("NEARUSDT")
+            candle_stick("BTCUSDT")
 
     except:
         message("BİR HATA OLUŞTU")
