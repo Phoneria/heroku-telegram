@@ -59,28 +59,34 @@ def candle_stick(coin_name):
         return dt.fromtimestamp(open_time.iloc[number] / 1000)
 
     max_level = 0
-    min_level = 0
+    min_level = 1000000000
     for i in range(5, len(close_level)):
 
-
-        if calculate_time(i).hour == time.localtime().tm_hour and calculate_time(i).day==datetime.today().day:
-            if max_level[i] < high_level[i]:
+        if calculate_time(i).hour == time.localtime().tm_hour and calculate_time(i).day == datetime.today().day:
+            if max_level < high_level[i]:
+                max_level = high_level[i]
                 message(
-                    coin_name + "\nSON 100 MUMUN EN YÜKSEK SEVİYESİ" + " \nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
+                    coin_name + "\nSON 100 MUMUN EN YÜKSEK SEVİYESİ" + " \nZAMAN :  " + str(
+                        calculate_time(i).hour + 3) + " : " + str(
                         calculate_time(i).minute))
+                message(str(high_level[i]))
+                message(str(max_level))
 
-            if min_level[i] < low_level[i] :
+            if min_level > low_level[i]:
+                min_level = low_level[i]
                 message(
                     coin_name + "\nSON 100 MUMUN EN DÜŞÜK SEVİYESİ" + " \nZAMAN :  " + str(
                         calculate_time(i).hour + 3) + " : " + str(
                         calculate_time(i).minute))
-
+                message(str(low_level[i]))
+                message(str(min_level))
 
             # ENGULF CANDLE
             if (open_level[i] > close_level[i]) and (close_level[i - 1] > open_level[i - 1]) and (
                     abs(close_level[i] - open_level[i]) > abs(close_level[i - 1] - open_level[i - 1])):
-                message(coin_name + "\nSHORT ENGULF MUMU" + " \nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
-                    calculate_time(i).minute))
+                message(
+                    coin_name + "\nSHORT ENGULF MUMU" + " \nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
+                        calculate_time(i).minute))
 
             if (open_level[i] < close_level[i]) and (close_level[i - 1] < open_level[i - 1]) and (
                     abs(close_level[i] - open_level[i]) > abs(close_level[i - 1] - open_level[i - 1])):
@@ -89,13 +95,15 @@ def candle_stick(coin_name):
 
             # GREEN CANDLE WITHOUT BOT SHADOW
             if low_level[i] == open_level[i]:
-                message(coin_name + "\nALT İĞNESİZ YEŞİL MUM " + " \nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
+                message(coin_name + "\nALT İĞNESİZ YEŞİL MUM " + " \nZAMAN :  " + str(
+                    calculate_time(i).hour + 3) + " : " + str(
                     calculate_time(i).minute))
 
             # RED CANDLE WITHOUT TOP SHADOW
             if high_level[i] == open_level[i]:
                 message(
-                    coin_name + "\nÜST İĞNESİZ KIRMIZI MUM" + " \nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
+                    coin_name + "\nÜST İĞNESİZ KIRMIZI MUM" + " \nZAMAN :  " + str(
+                        calculate_time(i).hour + 3) + " : " + str(
                         calculate_time(i).minute))
 
             # EVENING STAR
@@ -126,15 +134,17 @@ def candle_stick(coin_name):
                     and (close_level[i - 2] > open_level[i - 2]) and (close_level[i - 3] < open_level[i - 3]) and \
                     (close_level[i - 2] - open_level[i - 2] > open_level[i - 3] - close_level[i - 3]) and \
                     (open_level[i] - close_level[i] > close_level[i - 1] - open_level[i - 1]):
-                message(coin_name + "\nİKİLİ ENGULF SHORT" + " \nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
-                    calculate_time(i).minute))
+                message(
+                    coin_name + "\nİKİLİ ENGULF SHORT" + " \nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
+                        calculate_time(i).minute))
 
             if (close_level[i] > open_level[i]) and (close_level[i - 1] < open_level[i - 1]) \
                     and (close_level[i - 2] < open_level[i - 2]) and (close_level[i - 3] > open_level[i - 3]) and \
                     (close_level[i - 2] - open_level[i - 2] < open_level[i - 3] - close_level[i - 3]) and \
                     (open_level[i] - close_level[i] < close_level[i - 1] - open_level[i - 1]):
-                message(coin_name + "\nİKİLİ ENGULF LONG" + "\nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
-                    calculate_time(i).minute))
+                message(
+                    coin_name + "\nİKİLİ ENGULF LONG" + "\nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
+                        calculate_time(i).minute))
 
             if (close_level[i] > open_level[i]) and (close_level[i - 2] > open_level[i - 2]) and (
                     close_level[i - 1] < open_level[i - 1]) and (
@@ -154,15 +164,17 @@ def candle_stick(coin_name):
                     close_level[i - 1] < open_level[i - 1]) and (close_level[i - 2] < open_level[i - 2]) and (
                     close_level[i - 3] < open_level[i - 3]) \
                     and (open_level[i - 4] < open_level[i]):
-                message(coin_name + "\nÜÇLÜ ENGULF LONG " + " \nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
-                    calculate_time(i).minute))
+                message(
+                    coin_name + "\nÜÇLÜ ENGULF LONG " + " \nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
+                        calculate_time(i).minute))
 
             if (close_level[i] < open_level[i]) and (close_level[i - 4] < open_level[i - 4]) and (
                     close_level[i - 1] > open_level[i - 1]) and (close_level[i - 2] > open_level[i - 2]) and (
                     close_level[i - 3] > open_level[i - 3]) \
                     and (open_level[i - 4] > open_level[i]):
-                message(coin_name + "\nÜÇLÜ ENGULF SHORT " + " \nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
-                    calculate_time(i).minute))
+                message(
+                    coin_name + "\nÜÇLÜ ENGULF SHORT " + " \nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
+                        calculate_time(i).minute))
 
             if (close_level[i] < open_level[i]) and (close_level[i - 1] < open_level[i - 1]) and (
                     close_level[i - 2] < open_level[i - 2]) and \
@@ -173,8 +185,9 @@ def candle_stick(coin_name):
             if close_level[i] > open_level[i] and close_level[i - 1] > open_level[i - 1] and close_level[i - 2] > \
                     open_level[i - 2] and \
                     close_level[i] > high_level[i - 1] and close_level[i - 1] > high_level[i - 2]:
-                message(coin_name + "\nÜÇ BEYAZ ASKER " + " \nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
-                    calculate_time(i).minute))
+                message(
+                    coin_name + "\nÜÇ BEYAZ ASKER " + " \nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
+                        calculate_time(i).minute))
 
             if close_level[i] < open_level[i] and \
                     close_level[i - 1] < open_level[i - 1] and \
@@ -190,7 +203,7 @@ def candle_stick(coin_name):
                     close_level[i - 3] > open_level[i - 3] and \
                     close_level[i - 4] > open_level[i - 4]:
                 message(coin_name + "\nBEŞ MUM LONG " + " \nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
-                    calculate_time(i).minute ))
+                    calculate_time(i).minute))
 
 
 
@@ -199,6 +212,7 @@ def candle_stick(coin_name):
                 max_level = high_level[i]
             if low_level[i] <= min_level:
                 min_level = low_level[i]
+
 
 
 
