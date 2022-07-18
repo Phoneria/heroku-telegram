@@ -66,20 +66,20 @@ def candle_stick(coin_name):
             if max_level < high_level[i]:
                 max_level = high_level[i]
                 message(
-                    coin_name + "\nSON 100 MUMUN EN YÜKSEK SEVİYESİ" + " \nZAMAN :  " + str(
+                    coin_name + "\nSON 100 MUMUN EN YÜKSEK SEVİYESİ : "+str(max_level) + " \nZAMAN :  " + str(
                         calculate_time(i).hour + 3) + " : " + str(
                         calculate_time(i).minute))
-                message(str(high_level[i]))
+                
                 message(str(max_level))
 
             if min_level > low_level[i]:
                 min_level = low_level[i]
                 message(
-                    coin_name + "\nSON 100 MUMUN EN DÜŞÜK SEVİYESİ" + " \nZAMAN :  " + str(
+                    coin_name + "\nSON 100 MUMUN EN DÜŞÜK SEVİYESİ : "+str(min_level) + " \nZAMAN :  " + str(
                         calculate_time(i).hour + 3) + " : " + str(
                         calculate_time(i).minute))
-                message(str(low_level[i]))
-                message(str(min_level))
+               
+                
 
             # ENGULF CANDLE
             if (open_level[i] > close_level[i]) and (close_level[i - 1] > open_level[i - 1]) and (
