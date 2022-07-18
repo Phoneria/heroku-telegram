@@ -18,7 +18,8 @@ def message(bot_mesaj):
         response = requests.get(url)
 
 
-def tg_writer(coin_name, ):
+
+def tg_writer(coin_name):
     client = Client(None, None)
 
     def bring_data(symbol, periot, open, end):
@@ -33,7 +34,7 @@ def tg_writer(coin_name, ):
 
         csv_file.close()
 
-    start_time = datetime.today() - timedelta(hours=12)
+    start_time = datetime.today() - timedelta(hours=50)
     finish_time = datetime.today() + timedelta(days=1)
     interval = Client.KLINE_INTERVAL_30MINUTE
 
@@ -57,8 +58,23 @@ def candle_stick(coin_name):
     def calculate_time(number):
         return dt.fromtimestamp(open_time.iloc[number] / 1000)
 
+    max_level = 0
+    min_level = 0
     for i in range(5, len(close_level)):
-        if calculate_time(i).hour == time.localtime().tm_hour:
+
+
+        if calculate_time(i).hour == time.localtime().tm_hour and calculate_time(i).day==datetime.today().day:
+            if max_level[i] < high_level[i]:
+                message(
+                    coin_name + "\nSON 100 MUMUN EN YÜKSEK SEVİYESİ" + " \nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
+                        calculate_time(i).minute))
+
+            if min_level[i] < low_level[i] :
+                message(
+                    coin_name + "\nSON 100 MUMUN EN DÜŞÜK SEVİYESİ" + " \nZAMAN :  " + str(
+                        calculate_time(i).hour + 3) + " : " + str(
+                        calculate_time(i).minute))
+
 
             # ENGULF CANDLE
             if (open_level[i] > close_level[i]) and (close_level[i - 1] > open_level[i - 1]) and (
@@ -175,6 +191,16 @@ def candle_stick(coin_name):
                     close_level[i - 4] > open_level[i - 4]:
                 message(coin_name + "\nBEŞ MUM LONG " + " \nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
                     calculate_time(i).minute ))
+
+
+
+        else:
+            if high_level[i] >= max_level:
+                max_level = high_level[i]
+            if low_level[i] <= min_level:
+                min_level = low_level[i]
+
+
 
 
 message("YENİDEN BAŞLADI")
