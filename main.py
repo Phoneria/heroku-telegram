@@ -39,6 +39,8 @@ def tg_writer(coin_name):
     interval = Client.KLINE_INTERVAL_30MINUTE
 
     create_csv(coin_name, bring_data(coin_name, interval, str(start_time), str(finish_time)))
+    
+    
 
 
 def candle_stick(coin_name):
@@ -112,12 +114,12 @@ def candle_stick(coin_name):
         rsi = ta.rsi(close=close_level, length=14)
 
         if rsi.iloc[len(close_level) - 1] > 70:
-            message("\nOVERBOUGHT!!!\nCURRENT RSI VALUE : ", rsi.iloc[len(close_level) - 1],
-                  calculate_time(len(close_level) - 1))
+            message("\nOVERBOUGHT!!!\nCURRENT RSI VALUE : "+ str(rsi.iloc[len(close_level) - 1])+"\n" +
+             str( calculate_time(len(close_level) - 1)))
 
         if rsi.iloc[len(close_level) - 1] < 30:
-            message("\nOVERSOLD!!!\nCURRENT RSI VALUE : ", rsi.iloc[len(close_level) - 1],
-                  calculate_time(len(close_level) - 1))
+             message("\nOVERSOLD!!!\nCURRENT RSI VALUE : "+str( rsi.iloc[len(close_level) - 1])+"\n" +str (calculate_time(len(close_level) - 1)))
+
 
 
     max_level = 0
@@ -313,6 +315,53 @@ def candle_stick(coin_name):
 
 
 
+def tg_writer_scalp(coin_name):
+    client = Client(None, None)
+
+    def bring_data(symbol, periot, open, end):
+        candles = client.get_historical_klines(symbol, periot, open, end)
+        return candles
+
+    def create_csv(symbol, candles):
+        csv_file = open(symbol + "1MINTG.csv", "w", newline="")
+        writer = csv.writer(csv_file)
+        for candle in candles:
+            writer.writerow(candle)
+
+        csv_file.close()
+
+    start_time = datetime.today() - timedelta(days=1)
+    finish_time = datetime.today() + timedelta(days=1)
+    interval = Client.KLINE_INTERVAL_1MINUTE
+
+    create_csv(coin_name, bring_data(coin_name, interval, str(start_time), str(finish_time)))
+
+
+def candle_stick_scalp(coin_name):
+    titles = ["Open Time", "Open", "High", "Low", "Close", "Volume", "Close Time", "QAV", "NAT", "TBBAV", "TBQAV",
+              "ignore"]
+
+    tg_writer_scalp(coin_name)
+
+    df = pd.read_csv(coin_name + "1MINTG.csv", names=titles)
+
+
+    close_level = df["Close"]
+    open_time = df["Open Time"]
+
+    def calculate_time(number):
+        return dt.fromtimestamp(open_time.iloc[number] / 1000)
+
+
+    rsi = ta.rsi(close=close_level, length=14)
+
+    if rsi.iloc[len(close_level) - 1] > 70:
+        message("\nOVERBOUGHT!!!\nCURRENT RSI VALUE : "+ str(rsi.iloc[len(close_level) - 1])+"\n" +
+             str( calculate_time(len(close_level) - 1)))
+
+    if rsi.iloc[len(close_level) - 1] < 30:
+        message("\nOVERSOLD!!!\nCURRENT RSI VALUE : "+str( rsi.iloc[len(close_level) - 1])+"\n" +str (calculate_time(len(close_level) - 1)))
+
 
 
 message("YENİDEN BAŞLADI")
@@ -320,6 +369,9 @@ message("YENİDEN BAŞLADI")
 
 while True:
     try:
+        if (time.localtime().tm_sec == 59):
+            candle_stick_scalp("NEARUSDT")
+            
         if (time.localtime().tm_min == 29 or time.localtime().tm_min == 59) and time.localtime().tm_sec == 50:
             candle_stick("NEARUSDT")
             candle_stick("BTCUSDT")
