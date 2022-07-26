@@ -60,7 +60,7 @@ def candle_stick(coin_name):
     def calculate_time(number):
         return dt.fromtimestamp(open_time.iloc[number] / 1000)
     
-    
+    pivot_list = list()
     def pivot():
         High = 0
         Low = 10000
