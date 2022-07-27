@@ -59,6 +59,7 @@ def candle_stick(coin_name):
         return dt.fromtimestamp(open_time.iloc[number] / 1000)
     def rsi_indicator(): 
         rsi = ta.rsi(close=close_level, length=14) 
+        i = len(close_level) - 1
         if rsi.iloc[len(close_level) - 1] > 70:
             message("\nOVERBOUGHT!!!\nCURRENT RSI VALUE : " + str(rsi.iloc[len(close_level) - 1])  + " \nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
                     calculate_time(i).minute))
