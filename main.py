@@ -60,14 +60,17 @@ def candle_stick(coin_name):
     def rsi_indicator(): 
         rsi = ta.rsi(close=close_level, length=14) 
         if rsi.iloc[len(close_level) - 1] > 70:
-            message("\nOVERBOUGHT!!!\nCURRENT RSI VALUE : " + str(rsi.iloc[len(close_level) - 1]) + "\n" + str(calculate_time(len(close_level) - 1)))
+            message("\nOVERBOUGHT!!!\nCURRENT RSI VALUE : " + str(rsi.iloc[len(close_level) - 1])  + " \nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
+                    calculate_time(i).minute))
         if rsi.iloc[len(close_level) - 1] < 30: 
-            message("\nOVERSOLD!!!\nCURRENT RSI VALUE : " + str(rsi.iloc[len(close_level) - 1]) + "\n" + str( calculate_time(len(close_level) - 1)))
+            message("\nOVERSOLD!!!\nCURRENT RSI VALUE : " + str(rsi.iloc[len(close_level) - 1])  + " \nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
+                    calculate_time(i).minute))
             
     max_level = 0
     min_level = 1000000000
+    rsi_indicator()
     for i in range(5, len(close_level)):
-        rsi_indicator()
+        
         if calculate_time(i).hour == time.localtime().tm_hour and calculate_time(i).day == datetime.today().day:
             if max_level < high_level[i]:
                 max_level = high_level[i]
@@ -257,14 +260,16 @@ def candle_stick_scalp(coin_name):
         return dt.fromtimestamp(open_time.iloc[number] / 1000)
 
     rsi = ta.rsi(close=close_level, length=14)
-
+    i = len(close_level) - 1
     if rsi.iloc[len(close_level) - 1] > 75:
-        message("\nOVERBOUGHT!!!\nCURRENT RSI VALUE : " + str(rsi.iloc[len(close_level) - 1]) + "\n" +
-                str(calculate_time(len(close_level) - 1)))
+        message("\nOVERBOUGHT!!!\nCURRENT RSI VALUE : " + str(rsi.iloc[len(close_level) - 1]) + 
+                + " \nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
+                    calculate_time(i).minute))
 
     if rsi.iloc[len(close_level) - 1] < 25:
-        message("\nOVERSOLD!!!\nCURRENT RSI VALUE : " + str(rsi.iloc[len(close_level) - 1]) + "\n" + str(
-            calculate_time(len(close_level) - 1)))            
+        message("\nOVERSOLD!!!\nCURRENT RSI VALUE : " + str(rsi.iloc[len(close_level) - 1]) + str(
+           + " \nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
+                    calculate_time(i).minute)))            
 
 
 
