@@ -69,10 +69,11 @@ def candle_stick(coin_name):
             
     max_level = 0
     min_level = 1000000000
-    rsi_indicator()
+   
     for i in range(5, len(close_level)):
         
         if calculate_time(i).hour == time.localtime().tm_hour and calculate_time(i).day == datetime.today().day:
+             rsi_indicator()
             if max_level < high_level[i]:
                 max_level = high_level[i]
                 message(
@@ -261,16 +262,12 @@ def candle_stick_scalp(coin_name):
         return dt.fromtimestamp(open_time.iloc[number] / 1000)
 
     rsi = ta.rsi(close=close_level, length=14)
-    i = len(close_level) - 1
+   
     if rsi.iloc[len(close_level) - 1] > 75:
-        message("\nOVERBOUGHT!!!\nCURRENT RSI VALUE : " + str(rsi.iloc[len(close_level) - 1]) + 
-                + " \nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
-                    calculate_time(i).minute))
+        message("\nOVERBOUGHT!!!\nCURRENT RSI VALUE : " + str(rsi.iloc[len(close_level) - 1]))
 
     if rsi.iloc[len(close_level) - 1] < 25:
-        message("\nOVERSOLD!!!\nCURRENT RSI VALUE : " + str(rsi.iloc[len(close_level) - 1]) + str(
-           + " \nZAMAN :  " + str(calculate_time(i).hour + 3) + " : " + str(
-                    calculate_time(i).minute)))            
+        message("\nOVERSOLD!!!\nCURRENT RSI VALUE : " + str(rsi.iloc[len(close_level) - 1]))            
 
 
 
