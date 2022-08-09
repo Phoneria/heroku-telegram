@@ -285,7 +285,7 @@ message("YENİDEN BAŞLADI")
 while True:
     
     try:
-        if time.localtime().tm_min %5 == 4 and time.localtime().tm_sec == 50:
+        if 8<calculate_time(i).hour + 3 <15 and time.localtime().tm_min %5 == 4 and time.localtime().tm_sec == 50:
             priv_message("5DK")
         
         if time.localtime().tm_sec == 55:
