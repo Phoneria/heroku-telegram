@@ -263,8 +263,7 @@ def candle_stick_scalp(coin_name):
 
     tg_writer_scalp(coin_name)
 
-    df = pd.read_csv(coin_name + "1MINTG.csv", names=titles)
-
+    df = pd.read_csv(coin_name + "1MINTG.csv", names=titles
     close_level = df["Close"]
     open_time = df["Open Time"]
 
@@ -286,9 +285,11 @@ while True:
     
     try:
        
-        
+        if time.localtime().tm_min // 5 == 4 and time.localtime().tm_sec == 50 : 
+            priv_message("5DK")
         if time.localtime().tm_sec == 55:
             candle_stick_scalp("NEARUSDT")
+            
         if (time.localtime().tm_min == 29 or time.localtime().tm_min == 59) and time.localtime().tm_sec == 50:
             priv_message("30DK")
             candle_stick("NEARUSDT")
