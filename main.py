@@ -10,8 +10,7 @@ import requests
 
 def priv_message(bot_mesaj):
     id_list = ["1598072365"]
-    # 1518181191 ataberk
-    # 734839772 furkan
+ 
     for i in id_list:
         bot_token = "5424258200:AAGNGZlN5HevI2fnyQedvD7v8XPsFFSBBJA"
         url = "https://api.telegram.org/bot" + bot_token + "/sendMessage?chat_id=" + i + "&parse_mode=Markdown&text=" + bot_mesaj
@@ -19,8 +18,7 @@ def priv_message(bot_mesaj):
 
 def message(bot_mesaj):
     id_list = ["1598072365","1518181191"]
-    # 1518181191 ataberk
-    # 734839772 furkan
+ 
     for i in id_list:
         bot_token = "5424258200:AAGNGZlN5HevI2fnyQedvD7v8XPsFFSBBJA"
         url = "https://api.telegram.org/bot" + bot_token + "/sendMessage?chat_id=" + i + "&parse_mode=Markdown&text=" + bot_mesaj
@@ -285,8 +283,6 @@ while True:
     
     try:
        
-        if time.localtime().tm_min // 5 == 4 and time.localtime().tm_sec == 50 : 
-            priv_message("5DK")
         if time.localtime().tm_sec == 55:
             candle_stick_scalp("NEARUSDT")
             
