@@ -8,8 +8,8 @@ import pandas_ta as ta
 import requests
 
 
-def priv_message(bot_mesaj):
-    id_list = ["1598072365"]
+def general_message(bot_mesaj):
+    id_list = ["1598072365","1518181191"]
  
     for i in id_list:
         bot_token = "5424258200:AAGNGZlN5HevI2fnyQedvD7v8XPsFFSBBJA"
@@ -17,7 +17,7 @@ def priv_message(bot_mesaj):
         response = requests.get(url)
 
 def message(bot_mesaj):
-    id_list = ["1598072365","1518181191"]
+    id_list = ["1598072365"]
  
     for i in id_list:
         bot_token = "5424258200:AAGNGZlN5HevI2fnyQedvD7v8XPsFFSBBJA"
@@ -287,7 +287,7 @@ while True:
             candle_stick_scalp("NEARUSDT")
             
         if (time.localtime().tm_min == 29 or time.localtime().tm_min == 59) and time.localtime().tm_sec == 50:
-            priv_message("30DK")
+            message("30DK")
             candle_stick("NEARUSDT")
             candle_stick("BTCUSDT")
 
