@@ -12,7 +12,7 @@ def message(bot_mesaj):
         bot_token = "5424258200:AAGNGZlN5HevI2fnyQedvD7v8XPsFFSBBJA"
         url = "https://api.telegram.org/bot" + bot_token + "/sendMessage?chat_id=" + i + "&parse_mode=Markdown&text=" + bot_mesaj
         response = requests.get(url)
-
+        time.sleep(1)
 
 
 
