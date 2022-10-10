@@ -23,8 +23,8 @@ message("YENİDEN BAŞLADI")
 while True:
 
     try:
-        if (time.localtime().tm_min == 29 or time.localtime().tm_min == 59) and time.localtime().tm_sec == 50:
-            message("30DK")
+        if (time.localtime().tm_min % 5 == 4) and time.localtime().tm_sec == 50:
+            message("5DK")
             
     except:
         message("BİR HATA OLUŞTU")
