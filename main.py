@@ -18,13 +18,15 @@ def message(bot_mesaj):
 
 
 
-message("YENİDEN BAŞLADI")
+message("RESTARTED")
 
 while True:
 
     try:
         if (time.localtime().tm_min % 30 == 29) and time.localtime().tm_sec == 50:
-            message("30DK")
+            message("30MIN")
+        if (time.localtime().tm_hour % 4 == 2) and (time.localtime().tm_min % 60 ==59) and time.localtime().tm_sec == 50:
+            message("4HOUR")
             
     except:
-        message("BİR HATA OLUŞTU")
+        message("THERE IS AN ERROR")
