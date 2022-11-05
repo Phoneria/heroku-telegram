@@ -25,7 +25,7 @@ while True:
     try:
         if (time.localtime().tm_min % 30 == 29) and time.localtime().tm_sec == 50:
             message("30MIN")
-        if (time.localtime().tm_hour % 4 == 2) and (time.localtime().tm_min % 60 ==59) and time.localtime().tm_sec == 50:
+        if (time.localtime().tm_hour % 4 == 3) and (time.localtime().tm_min % 60 ==59) and time.localtime().tm_sec == 50:
             message("4HOUR")
             
     except:
