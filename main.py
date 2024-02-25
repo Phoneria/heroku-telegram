@@ -4,9 +4,9 @@ import time
 
 
 def message(bot_mesaj):
-    bot_token = "6569581274:AAHoi-ZREvQ2RXrO1Asu-U0Ehv6TnndbmfU"
+    bot_token = "***********"
 
-    id_list = ["1598072365","1518181191"]
+    id_list = ["*****","*******"]
 
     for i in id_list:
         url = "https://api.telegram.org/bot" + bot_token + "/sendMessage?chat_id=" + i + "&parse_mode=Markdown&text=" + bot_mesaj
